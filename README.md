@@ -1,69 +1,58 @@
-# 🚪 Contrôle d'Accès RFID — Salle 215
+# Contrôle d'accès RFID - Salle 215
 
-> **Mini-Projet 2 — Tâche 1 : Authentification RFID sur ESP32**  
-> **Équipe :** Alban & Youssef (*Missions techniques*)
+Mini-projet 2, tâche 1 : authentification par badge RFID avec l'ESP32.
+Réalisé par Alban et Youssef.
 
----
+## Objectif
 
-## 📌 Présentation du Projet
+On utilise un lecteur RFID RC522 branché sur un ESP32 pour contrôler l'accès
+à la salle 215. Quand on passe un badge, l'ESP32 lit son UID et l'envoie à
+l'API du serveur Linux. Selon la réponse, la porte s'ouvre ou non.
 
-Cette tâche assure la gestion des accès physiques à la salle 215 via un module RFID (RC522) piloté par un microcontrôleur **ESP32**. 
+## Branchement
 
-L'ESP32 lit l'identifiant unique (**UID**) du badge présenté, le transmet à l'API centrale du serveur Linux via des requêtes HTTP, puis traite la réponse pour autoriser ou refuser l'accès en temps réel.
+Le RC522 est relié à l'ESP32 par le bus SPI :
 
----
+| RC522 | ESP32   |
+|-------|---------|
+| SDA   | GPIO 5  |
+| SCK   | GPIO 18 |
+| MOSI  | GPIO 23 |
+| MISO  | GPIO 19 |
+| RST   | GPIO 22 |
+| 3.3V  | 3V3     |
+| GND   | GND     |
 
-## 🛠️ Missions & Périmètre Technique
+Attention : le RC522 s'alimente en 3.3V, pas en 5V.
 
-### 1. Matériel & Montage
-Raccordement du lecteur **MFRC522** au bus SPI de l'ESP32 :
+Sorties :
+- GPIO 26 : relais (gâche) + LED verte
+- GPIO 27 : LED rouge + buzzer
 
-| Composant | Broche ESP32 | Broche MFRC522 | Description |
-| :--- | :---: | :---: | :--- |
-| **SDA (SS)** | `GPIO 5` | SDA | Sélection de l'esclave SPI |
-| **SCK** | `GPIO 18` | SCK | Horloge SPI |
-| **MOSI** | `GPIO 23` | MOSI | Data Output (Master Out) |
-| **MISO** | `GPIO 19` | MISO | Data Input (Master In) |
-| **RST** | `GPIO 22` | RST | Reset hardware du module |
-| **GND / 3.3V** | GND / 3V3 | GND / 3.3V | Alimentation *(3.3V impératif)* |
+## Fonctionnement du programme
 
-> **Actionneurs locaux :**  
-> * **Relais / LED Verte :** `GPIO 26`  
-> * **LED Rouge / Buzzer :** `GPIO 27`
+1. L'ESP32 attend qu'un badge soit présenté et lit son UID.
+2. Il envoie l'UID à l'API avec une requête POST (JSON).
+3. Il attend la réponse du serveur et réagit en fonction du code reçu.
 
----
+## Cas possibles
 
-### 2. Développement ESP32
+| Situation | Réponse de l'API | Ce que fait l'ESP32 |
+|-----------|------------------|---------------------|
+| Badge autorisé | 200, `granted` | Relais activé 3 s, LED verte, 1 bip court |
+| Badge inconnu | 403, `unknown` | LED rouge, 2 bips longs |
+| Badge connu mais refusé | 403, `denied` | LED rouge (droits insuffisants ou hors horaire) |
+| Wi-Fi coupé ou serveur HS | erreur 5xx ou timeout | LED rouge qui clignote, message dans le moniteur série |
 
-- **Lecture RFID :** Capture de l'UID (4 ou 7 octets) à chaque passage de badge.
-- **Client HTTP/JSON :** Envoi d'une requête `POST` synchrone vers l'API avec le payload JSON.
-- **Rétroaction locale :**
-  - **Accès accordé (`200 OK`) :** Activation du relais (3 secondes) + voyant vert.
-  - **Accès refusé (`403 Forbidden`) :** Voyant rouge + signal sonore.
-  - **Erreur réseau / Timeout :** Clignotement d'avertissement orange.
+## Échange avec l'API
 
----
+Requête envoyée par l'ESP32 :
 
-### 3. Gestion des Cas aux Limites
+- URL : `POST /api/v1/access/rfid`
+- Header : `Content-Type: application/json`
 
-| Scénario | Réponse API / État | Action ESP32 |
-| :--- | :---: | :--- |
-| **Badge valide & autorisé** | `200 OK` (`status: granted`) | Ouverture du relais (3s) + Bip court |
-| **Badge inconnu** | `403 Forbidden` (`status: unknown`) | Accès refusé + 2 bips longs |
-| **Badge connu mais non autorisé** | `403 Forbidden` (`status: denied`) | Accès refusé (hors créneau / droits insuffisants) |
-| **Perte Wi-Fi / API Inaccessible** | `HTTP 5xx` ou Timeout | Clignotement d'erreur + log local |
-
----
-
-## 📡 Contrat d'Interface API
-
-### Requête de vérification (ESP32 ➔ Serveur)
-* **Endpoint :** `POST /api/v1/access/rfid`
-* **Header :** `Content-Type: application/json`
-
-```json
-{
-  "uid": "A1B2C3D4",
-  "reader_id": "ESP32_DOOR_215",
-  "timestamp": "2026-10-01T10:40:00Z"
-}
+    {
+      "uid": "A1B2C3D4",
+      "reader_id": "ESP32_DOOR_215",
+      "timestamp": "2026-10-01T10:40:00Z"
+    }

@@ -1,0 +1,30 @@
+/* Style du site de réservation de la salle 215 */
+
+body {
+    margin: 0;
+    background: #f2f2f2;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.carte {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+h1 {
+    margin-top: 0;
+    color: #0066cc;
+}
+
+.succes {
+    color: green;
+}
+
+.erreur {
+    color: red;
+}

@@ -12,19 +12,11 @@ $utilisateurs = $pdo->query(
      INNER JOIN roles r ON r.id = u.id_role
      ORDER BY u.nom, u.prenom'
 )->fetchAll();
+$titre = 'Utilisateurs';
+require __DIR__ . '/includes/entete.php';
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salle 215 — Utilisateurs</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
     <main class="carte large">
         <h1>Utilisateurs</h1>
-        <p><a href="index.php">← Accueil</a></p>
         <p><a href="utilisateur_ajouter.php">+ Ajouter un utilisateur</a></p>
 
         <table>

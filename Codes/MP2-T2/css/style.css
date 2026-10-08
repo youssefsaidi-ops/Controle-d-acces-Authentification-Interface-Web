@@ -130,3 +130,6 @@ select {
 .menu-droite {
     margin-left: auto;
 }
+.menu-droite a {
+    margin-left: 10px;
+}

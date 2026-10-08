@@ -102,3 +102,31 @@ select {
 .petit-bouton:hover {
     background: #990000;
 }
+/* Menu en haut de page */
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 20px;
+    background: #0066cc;
+    color: white;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+}
+
+.menu-titre {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Pousse le nom et la déconnexion tout à droite */
+.menu-droite {
+    margin-left: auto;
+}

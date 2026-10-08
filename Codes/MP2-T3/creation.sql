@@ -16,8 +16,7 @@ CREATE TABLE roles (
 
 INSERT INTO roles (id, nom) VALUES
   (1, 'admin'),
-  (2, 'prof'),
-  (3, 'eleve');
+  (2, 'client');
 
 CREATE TABLE utilisateurs (
   id            INT AUTO_INCREMENT PRIMARY KEY,
@@ -25,7 +24,7 @@ CREATE TABLE utilisateurs (
   prenom        VARCHAR(50)  NOT NULL,
   email         VARCHAR(100) NOT NULL UNIQUE,
   mot_de_passe  VARCHAR(255) NOT NULL,
-  id_role       INT NOT NULL DEFAULT 3,
+  id_role       INT NOT NULL DEFAULT 2,
   date_creation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (id_role) REFERENCES roles(id)
 );

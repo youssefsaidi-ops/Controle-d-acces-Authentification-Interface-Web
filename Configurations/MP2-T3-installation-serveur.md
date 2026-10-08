@@ -113,6 +113,47 @@ groups yannis
 
 Résultat obtenu : `yannis` fait partie du groupe `sudo`.
 
-## Reste à faire
+## 9. Adresse IP fixe
 
-* Mettre une adresse IP fixe (en attente de l'adresse donnée par le prof)
+L'adresse a été validée par le professeur (plage au-dessus de .200).
+
+### Vérifier les adresses libres.
+
+```bash
+for i in $(seq 240 254); do ping -c 1 -W 1 172.16.10.$i > /dev/null && echo "$i occupée" || echo "$i libre"; done
+```
+
+Résultat obtenu : 250, 252 et 254 occupées. On a choisi 172.16.10.245.
+
+### Récupérer les paramètres du réseau.
+
+```bash
+ip -4 addr show eth0
+ip route
+cat /etc/resolv.conf
+```
+
+| Paramètre  | Valeur           |
+|:----------:|:----------------:|
+| Adresse    | 172.16.10.245/24 |
+| Passerelle | 172.16.10.254    |
+| DNS        | 172.16.10.42     |
+| Domaine    | ciel.carnus      |
+
+### Mettre l'adresse fixe.
+
+```bash
+sudo nmcli con mod "Wired connection 1" ipv4.method manual ipv4.addresses 172.16.10.245/24 ipv4.gateway 172.16.10.254 ipv4.dns 172.16.10.42 ipv4.dns-search ciel.carnus
+sudo nmcli con up "Wired connection 1"
+```
+
+### Vérifier.
+
+```bash
+hostname -I
+ping -c 3 google.com
+```
+
+Résultat obtenu : `172.16.10.245`, et le serveur a toujours accès à internet (0% de perte).
+
+Après un redémarrage, le serveur garde bien la même adresse.

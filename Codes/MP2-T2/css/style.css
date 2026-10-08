@@ -57,3 +57,48 @@ button {
 button:hover {
     background: #004c99;
 }
+/* Carte plus large pour les tableaux */
+.carte.large {
+    max-width: 800px;
+}
+
+/* Tableaux */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #f2f2f2;
+}
+
+/* Liste déroulante, même style que les champs */
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+/* Formulaire sur la même ligne qu'un lien */
+.en-ligne {
+    display: inline;
+}
+
+/* Petit bouton dans un tableau */
+.petit-bouton {
+    width: auto;
+    margin: 0 0 0 10px;
+    padding: 4px 8px;
+    background: #cc0000;
+}
+
+.petit-bouton:hover {
+    background: #990000;
+}

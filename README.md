@@ -70,26 +70,16 @@ Le but de cette mission est de créer un contrôle d'accès RFID permettant de t
 Dans ce dépôt GitHub, vous trouverez :
 - 3 branches correspondant aux 3 tâches
 - Le projet avec les *issues*
-- 3 *milestones* attribués aux 3 tâches
+- 3 *milestones* attribuées aux 3 tâches
 
 ---
 
-## Organisation de l'arborescence
+## Schéma global du fonctionnement du système
 
-```text
-MP-2/
-├── Rapports/
-│   ├── MP2-P-Commune.pdf
-│   ├── MP2-T1.pdf
-│   ├── MP2-T2.pdf
-│   ├── MP2-T3.pdf
-│   ├── Notice-utilisation.pdf
-│   └── Fiches-recettes.pdf
-├── Codes/
-│   ├── MP2-T1/
-│   ├── MP2-T2/
-│   └── MP2-T3/
-├── Configurations/
-├── Schemas/
-├── Captures/
-└── Ressources/
+### Accès RFID
+```mermaid
+flowchart TD
+    A[Badge présenté] --> B[Lecture de l’UID]
+    B --> C[Vérification par le serveur]
+    C --> D[Accès autorisé ou refusé]
+    D --> E[Journalisation]

@@ -25,6 +25,7 @@ $utilisateurs = $pdo->query(
     <main class="carte large">
         <h1>Utilisateurs</h1>
         <p><a href="index.php">← Accueil</a></p>
+        <p><a href="utilisateur_ajouter.php">+ Ajouter un utilisateur</a></p>
 
         <table>
             <tr>

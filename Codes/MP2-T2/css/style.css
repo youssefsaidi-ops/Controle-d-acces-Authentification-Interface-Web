@@ -77,3 +77,12 @@ th, td {
 th {
     background: #f2f2f2;
 }
+
+/* Liste déroulante, même style que les champs */
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

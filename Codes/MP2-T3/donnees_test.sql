@@ -16,7 +16,9 @@ INSERT INTO utilisateurs (nom, prenom, email, mot_de_passe) VALUES
 INSERT INTO badges (uid, id_utilisateur, actif) VALUES
   ('A3F2C410', 1, TRUE),
   ('7B19E2D5', 3, TRUE),
-  ('C04D8812', 4, FALSE);
+  ('C04D8812', 4, FALSE),
+  ('509924D9', 1, TRUE),
+  ('FA488D2E', 3, TRUE);
 
 INSERT INTO reservations (id_utilisateur, date_debut, date_fin) VALUES
   (2, '2026-10-12 08:00:00', '2026-10-12 10:00:00'),

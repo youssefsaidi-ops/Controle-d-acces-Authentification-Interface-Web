@@ -57,3 +57,23 @@ button {
 button:hover {
     background: #004c99;
 }
+/* Carte plus large pour les tableaux */
+.carte.large {
+    max-width: 800px;
+}
+
+/* Tableaux */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #f2f2f2;
+}

@@ -41,7 +41,17 @@ $utilisateurs = $pdo->query(
                     <td><?= htmlspecialchars($u['prenom']) ?></td>
                     <td><?= htmlspecialchars($u['email']) ?></td>
                     <td><?= htmlspecialchars($u['role']) ?></td>
-                    <td><a href="utilisateur_modifier.php?id=<?= $u['id'] ?>">Modifier</a></td>
+                    <td>
+                        <a href="utilisateur_modifier.php?id=<?= $u['id'] ?>">Modifier</a>
+
+                        <?php if ($u['id'] != $_SESSION['id_utilisateur']): ?>
+                            <form method="post" action="utilisateur_supprimer.php" class="en-ligne"
+                                  onsubmit="return confirm('Supprimer cet utilisateur ?');">
+                                <input type="hidden" name="id" value="<?= $u['id'] ?>">
+                                <button type="submit" class="petit-bouton">Supprimer</button>
+                            </form>
+                        <?php endif; ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </table>

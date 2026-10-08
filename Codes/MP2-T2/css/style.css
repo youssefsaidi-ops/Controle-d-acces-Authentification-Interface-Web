@@ -86,3 +86,19 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+/* Formulaire sur la même ligne qu'un lien */
+.en-ligne {
+    display: inline;
+}
+
+/* Petit bouton dans un tableau */
+.petit-bouton {
+    width: auto;
+    margin: 0 0 0 10px;
+    padding: 4px 8px;
+    background: #cc0000;
+}
+
+.petit-bouton:hover {
+    background: #990000;
+}

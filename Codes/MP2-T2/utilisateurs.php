@@ -33,6 +33,7 @@ $utilisateurs = $pdo->query(
                 <th>Prénom</th>
                 <th>Email</th>
                 <th>Rôle</th>
+                <th>Actions</th>
             </tr>
             <?php foreach ($utilisateurs as $u): ?>
                 <tr>
@@ -40,6 +41,7 @@ $utilisateurs = $pdo->query(
                     <td><?= htmlspecialchars($u['prenom']) ?></td>
                     <td><?= htmlspecialchars($u['email']) ?></td>
                     <td><?= htmlspecialchars($u['role']) ?></td>
+                    <td><a href="utilisateur_modifier.php?id=<?= $u['id'] ?>">Modifier</a></td>
                 </tr>
             <?php endforeach; ?>
         </table>

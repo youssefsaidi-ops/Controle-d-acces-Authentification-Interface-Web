@@ -7,9 +7,9 @@ USE mp2_salle215;
 INSERT INTO utilisateurs (nom, prenom, email, mot_de_passe, id_role) VALUES
   ('Martin',  'Alice', 'alice.martin@test.fr', 'test_a_remplacer', 1),
   ('Dupont',  'Lucas', 'lucas.dupont@test.fr', 'test_a_remplacer', 2),
-  ('Bernard', 'Emma',  'emma.bernard@test.fr', 'test_a_remplacer', 3);
+  ('Bernard', 'Emma',  'emma.bernard@test.fr', 'test_a_remplacer', 2);
 
--- Pas de rôle indiqué : doit devenir élève automatiquement
+-- Pas de rôle indiqué : doit devenir client automatiquement
 INSERT INTO utilisateurs (nom, prenom, email, mot_de_passe) VALUES
   ('Petit', 'Hugo', 'hugo.petit@test.fr', 'test_a_remplacer');
 

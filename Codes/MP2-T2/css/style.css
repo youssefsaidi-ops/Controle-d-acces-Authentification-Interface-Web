@@ -137,39 +137,66 @@ select {
 
 /* Calendrier des créneaux */
 .form-date {
-    margin-bottom: 20px;
+    background-color: #2563eb;
+    color: #fff;
+    padding: 14px 20px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0;
+}
+
+.form-date label {
+    color: #fff;
+    margin: 0;
+}
+
+.form-date input[type="date"] {
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
 }
 
 .calendrier {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0 0 10px 10px;
+    padding: 20px;
     margin-bottom: 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 .creneau {
-    border: none;
-    border-radius: 6px;
-    padding: 10px 6px;
+    border: 2px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 12px 6px;
     text-align: center;
     font-family: inherit;
     font-size: 0.9em;
     cursor: default;
+    background-color: #fff;
+    color: #1e3a8a;
+    transition: background-color 0.15s, border-color 0.15s;
 }
 
 .creneau-libre {
-    background-color: #d4edda;
-    color: #155724;
     cursor: pointer;
 }
 
 .creneau-libre:hover {
-    background-color: #b7e4c0;
+    background-color: #d1fae5;
+    border-color: #34d399;
+    color: #065f46;
 }
 
 .creneau-occupe {
-    background-color: #f8d7da;
-    color: #721c24;
+    background-color: #dbeafe;
+    border-color: #93c5fd;
+    color: #1e40af;
 }
 
 .creneau-detail {

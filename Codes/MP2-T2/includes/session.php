@@ -1,28 +1,20 @@
 <?php
-// Gestion de la session : savoir qui est connecté et protéger les pages
+// Gestion de la session : savoir qui est connecté
+session_start();
 
-// Démarre la session une seule fois
-if (session_status() === PHP_SESSION_NONE) {
-    session_set_cookie_params([
-        'httponly' => true,    // le cookie n'est pas lisible en JavaScript
-        'samesite' => 'Strict' // le cookie n'est pas envoyé depuis un autre site
-    ]);
-    session_start();
-}
-
-// Vrai si un utilisateur est connecté
+// Renvoie vrai si quelqu'un est connecté
 function est_connecte()
 {
     return isset($_SESSION['id_utilisateur']);
 }
 
-// Vrai si l'utilisateur connecté est administrateur
+// Renvoie vrai si la personne connectée est admin
 function est_admin()
 {
-    return est_connecte() && $_SESSION['role'] === 'admin';
+    return isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
 }
 
-// À mettre en haut des pages réservées aux utilisateurs connectés
+// Si personne n'est connecté, on renvoie vers la page de connexion
 function exiger_connexion()
 {
     if (!est_connecte()) {
@@ -31,12 +23,12 @@ function exiger_connexion()
     }
 }
 
-// À mettre en haut des pages réservées à l'administrateur
+// Si la personne n'est pas admin, on bloque la page
 function exiger_admin()
 {
     exiger_connexion();
     if (!est_admin()) {
-        http_response_code(403);
-        exit('Accès réservé à l\'administrateur.');
+        echo 'Accès réservé à l\'administrateur.';
+        exit;
     }
 }

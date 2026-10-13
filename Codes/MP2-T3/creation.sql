@@ -64,3 +64,13 @@ CREATE TABLE acces (
   resultat       ENUM('autorise', 'inconnu', 'refuse', 'erreur') NOT NULL,
   FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id) ON DELETE SET NULL
 );
+
+
+CREATE TABLE journal (
+  id             INT AUTO_INCREMENT PRIMARY KEY,
+  date_heure     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  id_utilisateur INT NULL,
+  action         VARCHAR(50) NOT NULL,
+  detail         VARCHAR(255) NOT NULL,
+  FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id) ON DELETE SET NULL
+);

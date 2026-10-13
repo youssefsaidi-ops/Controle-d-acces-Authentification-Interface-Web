@@ -9,6 +9,15 @@
 | Format     | JSON                         |
 | Sécurité   | Clé API dans l'en-tête `X-API-KEY` |
 
+## Choix d'architecture
+
+| Composant          | Accès à la base                | Raison                                                        |
+|:------------------:|:------------------------------:|:-------------------------------------------------------------:|
+| ESP32 (Tâche 1)    | Par l'API                      | Il est sur un autre appareil, il ne doit jamais accéder directement à la base |
+| Site web (Tâche 2) | Directement, en local          | Il est installé sur le même serveur que la base               |
+
+Le site utilise le même compte limité que l'API (`app_mp2`) et le même fichier de configuration sécurisé (`/var/www/config.php`). Les règles de sécurité sont appliquées dans le site : mots de passe hachés, requêtes préparées et contrôle des droits côté serveur.
+
 La clé API est donnée à l'oral, elle n'est jamais écrite sur GitHub.
 
 ## 1. Accès par badge RFID

@@ -91,6 +91,48 @@ Résultat obtenu : `[UFW BLOCK] SRC=172.16.10.102 DST=172.16.10.245 DPT=3306`.
 | Clé API obligatoire pour l'API          | `bdd.php`                                  |
 | Requêtes préparées (pas d'injection SQL) | `rfid.php`                                |
 
-## Reste à faire
+## 4. HTTPS
 
-* HTTPS
+Le serveur n'est pas accessible depuis internet, donc on ne peut pas obtenir un certificat d'une autorité reconnue. On utilise un certificat auto-signé, valable 1 an. Le navigateur affiche un avertissement, mais la connexion est bien chiffrée.
+
+### Activer le module SSL d'Apache.
+
+```bash
+sudo a2enmod ssl
+```
+
+### Créer le certificat.
+
+```bash
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/srv-mp2.key -out /etc/ssl/certs/srv-mp2.crt -subj "/CN=172.16.10.245" -addext "subjectAltName=IP:172.16.10.245"
+```
+
+### Utiliser ce certificat dans Apache.
+
+```bash
+sudo sed -i 's#/etc/ssl/certs/ssl-cert-snakeoil.pem#/etc/ssl/certs/srv-mp2.crt#; s#/etc/ssl/private/ssl-cert-snakeoil.key#/etc/ssl/private/srv-mp2.key#' /etc/apache2/sites-available/default-ssl.conf
+grep SSLCertificate /etc/apache2/sites-available/default-ssl.conf
+```
+
+### Activer le site HTTPS.
+
+```bash
+sudo a2ensite default-ssl
+sudo apache2ctl configtest
+sudo systemctl restart apache2
+```
+
+Résultat obtenu : `Syntax OK`.
+
+### Tester.
+
+| ID  | Test                                   | Résultat attendu         | Résultat obtenu          | Statut |
+|:---:|:--------------------------------------:|:------------------------:|:------------------------:|:------:|
+| T14 | `https://172.16.10.245` dans le navigateur | Page affichée en HTTPS | Page affichée en HTTPS   | OK     |
+
+## 5. Limites
+
+| Limite                                   | Raison                                                                 |
+|:----------------------------------------:|:----------------------------------------------------------------------:|
+| Certificat auto-signé                    | Serveur pas accessible depuis internet                                 |
+| L'ESP32 communique encore en `http`      | Le HTTPS sur ESP32 demande d'intégrer le certificat dans son programme. Les échanges restent sur le réseau de la salle et sont protégés par la clé API |

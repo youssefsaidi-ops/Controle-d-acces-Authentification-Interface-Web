@@ -2,62 +2,68 @@
 
 body {
     margin: 0;
-    background: #f2f2f2;
+    background: #faf9fc;
     font-family: Arial, sans-serif;
-    color: #333;
+    color: #292433;
 }
 
 .carte {
     max-width: 400px;
     margin: 40px auto;
-    padding: 20px;
+    padding: 24px;
     background: white;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(108, 92, 231, 0.08);
 }
 
 h1 {
     margin-top: 0;
-    color: #0066cc;
+    color: #292433;
 }
 
 .erreur {
-    color: red;
+    color: #b4454a;
 }
 
 /* Formulaires */
 label {
     display: block;
     margin-top: 10px;
+    color: #6b6478;
+    font-weight: 600;
+    font-size: 14px;
 }
 
 input {
     width: 100%;
-    padding: 8px;
+    padding: 10px 14px;
     margin-top: 4px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1.5px solid #e6e2f0;
+    border-radius: 10px;
     box-sizing: border-box;
+    font-size: 14px;
 }
 
 button {
     margin-top: 15px;
-    padding: 10px;
+    padding: 12px;
     width: 100%;
-    background: #0066cc;
+    background: #6c5ce7;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 999px;
+    font-weight: 600;
     cursor: pointer;
 }
 
 button:hover {
-    background: #004c99;
+    background: #5b4bd1;
 }
 
 /* Carte plus large pour les tableaux */
 .carte.large {
-    max-width: 800px;
+    max-width: 880px;
 }
 
 /* Tableaux */
@@ -67,22 +73,23 @@ table {
 }
 
 th, td {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
+    padding: 10px 8px;
+    border-bottom: 1px solid #ece9f3;
     text-align: left;
 }
 
 th {
-    background: #f2f2f2;
+    color: #6b6478;
+    font-size: 13px;
 }
 
 /* Liste déroulante, même style que les champs */
 select {
     width: 100%;
-    padding: 8px;
+    padding: 10px 14px;
     margin-top: 4px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1.5px solid #e6e2f0;
+    border-radius: 10px;
 }
 
 /* Formulaire sur la même ligne qu'un lien */
@@ -94,12 +101,13 @@ select {
 .petit-bouton {
     width: auto;
     margin: 0 0 0 10px;
-    padding: 4px 8px;
-    background: #cc0000;
+    padding: 6px 14px;
+    background: #b4454a;
+    border-radius: 999px;
 }
 
 .petit-bouton:hover {
-    background: #990000;
+    background: #8f3236;
 }
 
 /* Menu en haut de page */
@@ -107,40 +115,46 @@ select {
     display: flex;
     align-items: center;
     gap: 20px;
-    padding: 12px 20px;
-    background: #0066cc;
-    color: white;
+    padding: 16px 32px;
+    background: #fff;
+    border-bottom: 1px solid #ece9f3;
+    color: #292433;
 }
 
 .menu a {
-    color: white;
+    color: #4b4557;
     text-decoration: none;
+    font-weight: 500;
 }
 
 .menu a:hover {
-    text-decoration: underline;
+    color: #6c5ce7;
 }
 
 .menu-titre {
-    font-weight: bold;
+    font-weight: 700;
     font-size: 18px;
+    color: #6c5ce7;
 }
 
 /* Pousse le nom et la déconnexion tout à droite */
 .menu-droite {
     margin-left: auto;
+    color: #8a8496;
+    font-size: 14px;
 }
 
 .menu-droite a {
     margin-left: 10px;
+    color: #8a8496;
 }
 
 /* Calendrier des créneaux */
 .form-date {
-    background-color: #2563eb;
+    background-color: #6c5ce7;
     color: #fff;
-    padding: 14px 20px;
-    border-radius: 10px 10px 0 0;
+    padding: 16px 20px;
+    border-radius: 16px 16px 0 0;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -154,8 +168,8 @@ select {
 
 .form-date input[type="date"] {
     border: none;
-    border-radius: 6px;
-    padding: 6px 10px;
+    border-radius: 8px;
+    padding: 8px 12px;
 }
 
 .calendrier {
@@ -163,23 +177,23 @@ select {
     grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
     gap: 10px;
     background-color: #fff;
-    border: 1px solid #e2e8f0;
-    border-radius: 0 0 10px 10px;
+    border: none;
+    border-radius: 0 0 16px 16px;
     padding: 20px;
     margin-bottom: 30px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 24px rgba(108, 92, 231, 0.08);
 }
 
 .creneau {
-    border: 2px solid #bfdbfe;
-    border-radius: 8px;
+    border: 1.5px solid #e6e2f0;
+    border-radius: 12px;
     padding: 12px 6px;
     text-align: center;
     font-family: inherit;
     font-size: 0.9em;
     cursor: default;
     background-color: #fff;
-    color: #1e3a8a;
+    color: #292433;
     transition: background-color 0.15s, border-color 0.15s;
 }
 
@@ -188,15 +202,15 @@ select {
 }
 
 .creneau-libre:hover {
-    background-color: #d1fae5;
-    border-color: #34d399;
-    color: #065f46;
+    background-color: #efebfc;
+    border-color: #6c5ce7;
+    color: #4b3fad;
 }
 
 .creneau-occupe {
-    background-color: #dbeafe;
-    border-color: #93c5fd;
-    color: #1e40af;
+    background-color: #fdeeee;
+    border-color: #f6caca;
+    color: #b4454a;
 }
 
 .creneau-detail {

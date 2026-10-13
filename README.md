@@ -74,7 +74,7 @@ Dans ce dépôt GitHub, vous trouverez :
 
 ---
 
-## Schéma global du dossier
+## Schéma de l'organisation du dossier
 ```text
 MP-2/
 ├── Rapports/

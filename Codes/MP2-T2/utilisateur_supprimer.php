@@ -16,8 +16,19 @@ if (isset($_POST['id'])) {
     }
 
     $pdo = connexion_bdd();
+
+    // On récupère les infos AVANT de supprimer, sinon on les perd
+    $requete = $pdo->prepare('SELECT nom, prenom, email FROM utilisateurs WHERE id = ?');
+    $requete->execute([$id]);
+    $utilisateur = $requete->fetch();
+
     $requete = $pdo->prepare('DELETE FROM utilisateurs WHERE id = ?');
     $requete->execute([$id]);
+
+    if ($utilisateur) {
+        ajouterJournal($pdo, $_SESSION['id_utilisateur'], 'suppression_utilisateur',
+            "Utilisateur supprimé : {$utilisateur['prenom']} {$utilisateur['nom']} ({$utilisateur['email']})");
+    }
 }
 
 header('Location: utilisateurs.php');

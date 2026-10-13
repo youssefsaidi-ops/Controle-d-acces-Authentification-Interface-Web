@@ -34,6 +34,9 @@ if (isset($_POST['email'])) {
                                       VALUES (?, ?, ?, ?, 2)');
             $requete->execute([$nom, $prenom, $email, $hash]);
 
+            $idNouveauCompte = $pdo->lastInsertId();
+            ajouterJournal($pdo, $idNouveauCompte, 'creation_compte', "Compte créé : $prenom $nom ($email)");
+
             header('Location: connexion.php');
             exit;
         }

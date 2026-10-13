@@ -43,6 +43,8 @@ if (isset($_POST['nom'])) {
             $requete->execute([$hash, $id]);
         }
 
+        ajouterJournal($pdo, $_SESSION['id_utilisateur'], 'modification_utilisateur', "Utilisateur modifié : $prenom $nom ($email)");
+
         header('Location: utilisateurs.php');
         exit;
     }

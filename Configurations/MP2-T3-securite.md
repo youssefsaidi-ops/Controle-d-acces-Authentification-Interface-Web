@@ -132,6 +132,40 @@ Résultat obtenu : `Syntax OK`.
 
 ## 5. Limites
 
+## 5. Limites
+
+| Limite                                   | Raison                                                                 |
+|:----------------------------------------:|:----------------------------------------------------------------------:|
+| Certificat auto-signé                    | Serveur pas accessible depuis internet                                 |
+| L'ESP32 communique encore en `http`      | Le HTTPS sur ESP32 demande d'intégrer le certificat dans son programme. Les échanges restent sur le réseau de la salle et sont protégés par la clé API |
+
+## 6. Analyse du trafic avec Wireshark
+
+Les échanges ont été enregistrés sur le serveur avec `tcpdump`, puis analysés avec Wireshark sur un PC. On enregistre sur le serveur car, sur un réseau commuté, un PC ne voit que son propre trafic.
+
+### Enregistrer le trafic sur le serveur.
+
+```bash
+sudo apt install tcpdump -y
+sudo tcpdump -i eth0 -w /tmp/capture-http.pcap port 80
+sudo tcpdump -i eth0 -w /tmp/capture-https.pcap port 443
+```
+
+### Récupérer le fichier sur le PC (PowerShell).
+
+```powershell
+scp gregoire@172.16.10.245:/tmp/capture-http.pcap $HOME\Desktop\
+```
+
+### Résultats.
+
+| Capture                     | Filtre Wireshark | Ce qu'on voit                                                       |
+|:---------------------------:|:----------------:|:-------------------------------------------------------------------:|
+| ESP32 → API (`http`)        | `http`           | La requête en clair : UID du badge, clé API et réponse du serveur   |
+| Navigateur → site (`https`) | `tls`            | Uniquement des données chiffrées (`Application Data`), illisibles   |
+
+La comparaison montre l'intérêt du HTTPS : en `http`, toute personne qui écoute le réseau peut lire la clé API. C'est la principale limite de la communication actuelle avec l'ESP32 (voir partie 5). Sur les captures publiées, la clé API a été masquée.
+
 | Limite                                   | Raison                                                                 |
 |:----------------------------------------:|:----------------------------------------------------------------------:|
 | Certificat auto-signé                    | Serveur pas accessible depuis internet                                 |

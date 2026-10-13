@@ -1,29 +1,24 @@
 <?php
-// Suppression d'un utilisateur : réservé à l'administrateur
-require_once __DIR__ . '/includes/db.php';
-require_once __DIR__ . '/includes/session.php';
+// Suppression d'un utilisateur : réservé à l'admin
+require_once 'includes/db.php';
+require_once 'includes/session.php';
 
 exiger_admin();
 
-// On n'accepte que les formulaires envoyés en POST (pas un simple lien)
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    exit('Méthode non autorisée.');
+// Le formulaire de la liste envoie l'id en POST
+if (isset($_POST['id'])) {
+    $id = $_POST['id'];
+
+    // L'admin ne peut pas supprimer son propre compte
+    if ($id == $_SESSION['id_utilisateur']) {
+        echo 'Vous ne pouvez pas supprimer votre propre compte.';
+        exit;
+    }
+
+    $pdo = connexion_bdd();
+    $requete = $pdo->prepare('DELETE FROM utilisateurs WHERE id = ?');
+    $requete->execute([$id]);
 }
-
-$id = (int) ($_POST['id'] ?? 0);
-
-// L'admin ne peut pas supprimer son propre compte
-if ($id === (int) $_SESSION['id_utilisateur']) {
-    exit('Vous ne pouvez pas supprimer votre propre compte.');
-}
-
-$pdo = connexion_bdd();
-
-// Grâce aux clés étrangères (ON DELETE CASCADE), ses réservations
-// et ses badges sont supprimés aussi
-$requete = $pdo->prepare('DELETE FROM utilisateurs WHERE id = ?');
-$requete->execute([$id]);
 
 header('Location: utilisateurs.php');
 exit;

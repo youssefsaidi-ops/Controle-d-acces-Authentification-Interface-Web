@@ -8,13 +8,19 @@ echo "Allumé depuis : $(uptime -p)"
 echo
 
 echo "---------- Services ----------"
-for service in apache2 mariadb ufw; do
+for service in apache2 mariadb; do
     if systemctl is-active --quiet "$service"; then
         echo "$service : OK"
     else
         echo "$service : ARRÊTÉ"
     fi
 done
+
+if ufw status | grep -q "Status: active"; then
+    echo "pare-feu : OK"
+else
+    echo "pare-feu : ARRÊTÉ"
+fi
 echo
 
 echo "---------- Ressources ----------"

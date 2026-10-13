@@ -21,13 +21,10 @@ h1 {
     color: #0066cc;
 }
 
-.succes {
-    color: green;
-}
-
 .erreur {
     color: red;
 }
+
 /* Formulaires */
 label {
     display: block;
@@ -57,6 +54,7 @@ button {
 button:hover {
     background: #004c99;
 }
+
 /* Carte plus large pour les tableaux */
 .carte.large {
     max-width: 800px;
@@ -86,6 +84,7 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
 /* Formulaire sur la même ligne qu'un lien */
 .en-ligne {
     display: inline;
@@ -102,6 +101,7 @@ select {
 .petit-bouton:hover {
     background: #990000;
 }
+
 /* Menu en haut de page */
 .menu {
     display: flex;
@@ -130,10 +130,10 @@ select {
 .menu-droite {
     margin-left: auto;
 }
+
 .menu-droite a {
     margin-left: 10px;
 }
-
 
 /* Calendrier des créneaux */
 .form-date {

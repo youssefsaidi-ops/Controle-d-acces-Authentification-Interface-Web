@@ -8,9 +8,11 @@ exiger_connexion();
 $pdo = connexion_bdd();
 
 // On n'affiche que les réservations de la personne connectée
-$requete = $pdo->prepare('SELECT id, date_debut, date_fin FROM reservations
-                          WHERE id_utilisateur = ?
-                          ORDER BY date_debut DESC');
+$requete = $pdo->prepare('SELECT r.id, r.date_debut, r.date_fin, q.code
+                          FROM reservations r
+                          LEFT JOIN qrcodes q ON q.id_reservation = r.id
+                          WHERE r.id_utilisateur = ?
+                          ORDER BY r.date_debut DESC');
 $requete->execute([$_SESSION['id_utilisateur']]);
 $reservations = $requete->fetchAll();
 
@@ -29,6 +31,7 @@ require_once 'includes/entete.php';
                     <th>Date</th>
                     <th>Début</th>
                     <th>Fin</th>
+                    <th>QR code</th>
                     <th>Actions</th>
                 </tr>
                 <?php foreach ($reservations as $r) { ?>
@@ -36,6 +39,11 @@ require_once 'includes/entete.php';
                         <td><?php echo date('d/m/Y', strtotime($r['date_debut'])); ?></td>
                         <td><?php echo date('H:i', strtotime($r['date_debut'])); ?></td>
                         <td><?php echo date('H:i', strtotime($r['date_fin'])); ?></td>
+                        <td>
+                            <a href="qr.php?code=<?php echo htmlspecialchars($r['code']); ?>">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=<?php echo urlencode(SITE_URL . '/qr.php?code=' . $r['code']); ?>" alt="QR code">
+                            </a>
+                        </td>
                         <td>
                             <form method="post" action="reservation_annuler.php" class="en-ligne"
                                   onsubmit="return confirm('Annuler cette réservation ?');">

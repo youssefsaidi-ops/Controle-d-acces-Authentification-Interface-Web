@@ -7,3 +7,5 @@ define('DB_PORT', 3306);
 define('DB_NOM',  'mp2_salle215');
 define('DB_UTILISATEUR', 'root');   // sur le serveur de T3 : app_mp2
 define('DB_MOT_DE_PASSE', '');      // XAMPP : vide par défaut
+
+define('SITE_URL', 'http://localhost/mp2/Codes/MP2-T2');

@@ -6,16 +6,24 @@
 
 ## Les tables
 
-| Table        | Rôle                                                      |
-|:------------:|:---------------------------------------------------------:|
-| roles        | Les rôles possibles : admin, prof, élève                   |
-| utilisateurs | Les comptes. Rôle élève par défaut                         |
+| Table        | Rôle                                                       |
+|:------------:|:----------------------------------------------------------:|
+| roles        | Les rôles possibles : admin, client                        |
+| utilisateurs | Les comptes. Rôle client par défaut                        |
 | badges       | Les badges RFID, chacun lié à un utilisateur               |
 | reservations | Les réservations de la salle 215                           |
-| qrcodes      | Un QR code généré pour chaque réservation                   |
+| qrcodes      | Un QR code généré pour chaque réservation                  |
 | acces        | L'historique de toutes les tentatives d'accès (RFID et QR) |
 
 ## Choix
+
+### Deux rôles : admin et client
+
+Tout nouveau compte est client par défaut. Seul un admin peut donner le rôle admin.
+
+### Règle d'accès
+
+Un admin peut entrer à tout moment. Un client peut entrer seulement pendant une de ses réservations.
 
 ### Pas de table pour l'état de la salle
 
@@ -23,7 +31,9 @@ L'état (libre, réservée, occupée) est calculé à partir des réservations e
 
 ### Résultat d'un accès
 
-La colonne `resultat` peut valoir : `autorise`, `inconnu`, `refuse` ou `erreur`.
+La colonne `resultat` est de type `ENUM` et ne peut valoir que : `autorise`, `inconnu`, `refuse` ou `erreur`.
+
+La colonne `type` est aussi de type `ENUM` et ne peut valoir que : `RFID` ou `QR`.
 
 ### Badge inconnu
 

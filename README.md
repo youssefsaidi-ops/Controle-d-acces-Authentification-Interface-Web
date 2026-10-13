@@ -74,11 +74,20 @@ Dans ce dépôt GitHub, vous trouverez :
 
 ---
 
-## Schéma global du fonctionnement du système
-
-### Accès RFID
-```mermaid
-    A[Badge présenté] --> B[Lecture de l’UID]
-    B --> C[Vérification par le serveur]
-    C --> D[Accès autorisé ou refusé]
-    D --> E[Journalisation]
+## Schéma global du dossier
+MP-2/
+├── Rapports/
+│   ├── MP2-P-Commune.pdf
+│   ├── MP2-T1.pdf
+│   ├── MP2-T2.pdf
+│   ├── MP2-T3.pdf
+│   ├── Notice-utilisation.pdf
+│   └── Fiches-recettes.pdf
+├── Codes/
+│   ├── MP2-T1/
+│   ├── MP2-T2/
+│   └── MP2-T3/
+├── Configurations/
+├── Schemas/
+├── Captures/
+└── Ressources/

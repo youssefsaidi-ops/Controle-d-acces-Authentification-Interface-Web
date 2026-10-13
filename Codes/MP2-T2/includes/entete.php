@@ -17,6 +17,7 @@ require_once 'includes/session.php';
 
         <?php if (est_connecte()) { ?>
             <a href="index.php">Accueil</a>
+            <a href="disponibilites.php">Disponibilités</a>
 
             <?php if (est_admin()) { ?>
                 <a href="utilisateurs.php">Utilisateurs</a>

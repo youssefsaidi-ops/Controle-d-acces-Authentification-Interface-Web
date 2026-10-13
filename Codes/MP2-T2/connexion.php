@@ -52,15 +52,15 @@ require_once 'includes/entete.php';
             <p class="erreur"><?php echo $erreur; ?></p>
         <?php } ?>
 
-        <form method="post">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="mot_de_passe">Mot de passe</label>
-            <input type="password" id="mot_de_passe" name="mot_de_passe" required>
-
-            <button type="submit">Se connecter</button>
-        </form>
+            <form method="post">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <label for="mot_de_passe">Mot de passe</label>
+                <input type="password" id="mot_de_passe" name="mot_de_passe" required>
+                <button type="submit">Se connecter</button>
+            </form>
+            <p><a href="inscription.php">Créer un compte</a></p>
     </main>
+
 </body>
 </html>

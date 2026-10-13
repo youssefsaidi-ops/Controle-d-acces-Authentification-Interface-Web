@@ -75,6 +75,7 @@ Dans ce dépôt GitHub, vous trouverez :
 ---
 
 ## Schéma global du dossier
+```text
 MP-2/
 ├── Rapports/
 │   ├── MP2-P-Commune.pdf
@@ -91,3 +92,4 @@ MP-2/
 ├── Schemas/
 ├── Captures/
 └── Ressources/
+```

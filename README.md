@@ -78,7 +78,6 @@ Dans ce dépôt GitHub, vous trouverez :
 
 ### Accès RFID
 ```mermaid
-flowchart TD
     A[Badge présenté] --> B[Lecture de l’UID]
     B --> C[Vérification par le serveur]
     C --> D[Accès autorisé ou refusé]

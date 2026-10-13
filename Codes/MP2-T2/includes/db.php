@@ -1,7 +1,6 @@
 <?php
 // Connexion à la base de données avec PDO
-require_once 'config.php';
-
+require_once __DIR__ . '/../config.php';
 function connexion_bdd()
 {
     $port = defined('DB_PORT') ? DB_PORT : 3306;

@@ -17,7 +17,7 @@ require_once 'includes/session.php';
 
         <?php if (est_connecte()) { ?>
             <a href="index.php">Accueil</a>
-            <a href="disponibilites.php">Disponibilités</a>
+            <a href="reservation.php">Réserver</a>
             <a href="mes_reservations.php">Mes réservations</a>
 
             <?php if (est_admin()) { ?>

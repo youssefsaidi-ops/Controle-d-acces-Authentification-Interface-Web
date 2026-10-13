@@ -133,3 +133,47 @@ select {
 .menu-droite a {
     margin-left: 10px;
 }
+
+
+/* Calendrier des créneaux */
+.form-date {
+    margin-bottom: 20px;
+}
+
+.calendrier {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+    margin-bottom: 30px;
+}
+
+.creneau {
+    border: none;
+    border-radius: 6px;
+    padding: 10px 6px;
+    text-align: center;
+    font-family: inherit;
+    font-size: 0.9em;
+    cursor: default;
+}
+
+.creneau-libre {
+    background-color: #d4edda;
+    color: #155724;
+    cursor: pointer;
+}
+
+.creneau-libre:hover {
+    background-color: #b7e4c0;
+}
+
+.creneau-occupe {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.creneau-detail {
+    display: block;
+    font-size: 0.8em;
+    margin-top: 4px;
+}

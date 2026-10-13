@@ -14,3 +14,10 @@ function connexion_bdd()
         die('Erreur de connexion à la base de données.');
     }
 }
+
+// Ajoute une ligne dans le journal des actions importantes
+function ajouterJournal($pdo, $idUtilisateur, $action, $detail)
+{
+    $requete = $pdo->prepare('INSERT INTO journal (id_utilisateur, action, detail) VALUES (?, ?, ?)');
+    $requete->execute([$idUtilisateur, $action, $detail]);
+}

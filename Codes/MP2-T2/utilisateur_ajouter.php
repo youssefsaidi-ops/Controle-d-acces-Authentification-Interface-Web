@@ -33,6 +33,9 @@ if (isset($_POST['nom'])) {
                                   VALUES (?, ?, ?, ?, ?)');
         $requete->execute([$nom, $prenom, $email, $hash, $id_role]);
 
+        $role = ($id_role == 1) ? 'admin' : 'client';
+        ajouterJournal($pdo, $_SESSION['id_utilisateur'], 'ajout_utilisateur', "Utilisateur ajouté : $prenom $nom ($email), rôle $role");
+
         header('Location: utilisateurs.php');
         exit;
     }

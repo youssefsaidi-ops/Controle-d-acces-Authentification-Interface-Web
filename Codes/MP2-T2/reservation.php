@@ -1,5 +1,4 @@
 <?php
-// Page pour voir les disponibilités et réserver un créneau
 require_once 'includes/db.php';
 require_once 'includes/session.php';
 
@@ -8,7 +7,6 @@ exiger_connexion();
 $erreur = '';
 $pdo = connexion_bdd();
 
-// --- Traitement du formulaire de réservation ---
 if (isset($_POST['date_debut'])) {
     $date_debut = $_POST['date_debut'];
     $date_fin = $_POST['date_fin'];
@@ -27,26 +25,18 @@ if (isset($_POST['date_debut'])) {
                                       VALUES (?, ?, ?)');
             $requete->execute([$_SESSION['id_utilisateur'], $date_debut, $date_fin]);
 
-            $id_reservation = $pdo->lastInsertId();
-            $code = bin2hex(random_bytes(16));
-
-            $requete = $pdo->prepare('INSERT INTO qrcodes (code, id_reservation) VALUES (?, ?)');
-            $requete->execute([$code, $id_reservation]);
-
             header('Location: mes_reservations.php');
             exit;
         }
     }
 }
 
-// --- Date choisie pour le calendrier (aujourd'hui par défaut) ---
 if (isset($_GET['date'])) {
     $date = $_GET['date'];
 } else {
     $date = date('Y-m-d');
 }
 
-// On récupère les réservations de ce jour-là
 $requete = $pdo->prepare('SELECT r.date_debut, r.date_fin, u.nom, u.prenom
                           FROM reservations r
                           INNER JOIN utilisateurs u ON u.id = r.id_utilisateur
@@ -55,7 +45,6 @@ $requete = $pdo->prepare('SELECT r.date_debut, r.date_fin, u.nom, u.prenom
 $requete->execute([$date]);
 $reservations_du_jour = $requete->fetchAll();
 
-// On construit les créneaux d'une heure, de 8h à 20h
 $creneaux = [];
 for ($heure = 8; $heure < 20; $heure++) {
     $debut_creneau = $date . ' ' . sprintf('%02d:00:00', $heure);
@@ -65,7 +54,6 @@ for ($heure = 8; $heure < 20; $heure++) {
     $nom_occupant = '';
 
     foreach ($reservations_du_jour as $r) {
-        // Le créneau est occupé s'il chevauche une réservation existante
         if ($debut_creneau < $r['date_fin'] && $fin_creneau > $r['date_debut']) {
             $occupe = true;
             $nom_occupant = $r['prenom'] . ' ' . $r['nom'];
@@ -86,17 +74,14 @@ require_once 'includes/entete.php';
 ?>
     <main class="carte large">
         <h1>Réserver la salle 215</h1>
-
         <?php if ($erreur != '') { ?>
             <p class="erreur"><?php echo $erreur; ?></p>
         <?php } ?>
-
         <form method="get" class="form-date">
             <label for="date">Date</label>
             <input type="date" id="date" name="date" value="<?php echo htmlspecialchars($date); ?>"
                    onchange="this.form.submit()">
         </form>
-
         <div class="calendrier">
             <?php foreach ($creneaux as $c) { ?>
                 <?php if ($c['occupe']) { ?>
@@ -113,20 +98,15 @@ require_once 'includes/entete.php';
                 <?php } ?>
             <?php } ?>
         </div>
-
         <form method="post" class="form-reservation">
             <label for="date_debut">Début</label>
             <input type="datetime-local" id="date_debut" name="date_debut" required>
-
             <label for="date_fin">Fin</label>
             <input type="datetime-local" id="date_fin" name="date_fin" required>
-
             <button type="submit">Réserver</button>
         </form>
     </main>
-
     <script>
-        // Remplit le formulaire quand on clique sur un créneau libre
         function choisirCreneau(debut, fin) {
             document.getElementById('date_debut').value = debut.replace(' ', 'T').substring(0, 16);
             document.getElementById('date_fin').value = fin.replace(' ', 'T').substring(0, 16);

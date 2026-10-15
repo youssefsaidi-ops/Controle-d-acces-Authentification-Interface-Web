@@ -4,11 +4,10 @@ require_once 'includes/session.php';
 exiger_connexion();
 
 $pdo = connexion_bdd();
-$requete = $pdo->prepare('SELECT r.id, r.date_debut, r.date_fin, q.code
-                          FROM reservations r
-                          LEFT JOIN qrcodes q ON q.id_reservation = r.id
-                          WHERE r.id_utilisateur = ?
-                          ORDER BY r.date_debut DESC');
+$requete = $pdo->prepare('SELECT id, date_debut, date_fin
+                          FROM reservations
+                          WHERE id_utilisateur = ?
+                          ORDER BY date_debut DESC');
 $requete->execute([$_SESSION['id_utilisateur']]);
 $reservations = $requete->fetchAll();
 

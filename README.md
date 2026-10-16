@@ -75,6 +75,7 @@ Dans ce dépôt GitHub, vous trouverez :
 ---
 
 ## Schéma de l'organisation du dossier
+!TOUT EST DANS LA BRANCHE MAIN! 
 ```text
 MP-2/
 ├── Rapports/
@@ -91,6 +92,5 @@ MP-2/
 │   └── MP2-T3/
 ├── Configurations/
 ├── Schemas/
-├── Captures/
 └── Ressources/
 ```

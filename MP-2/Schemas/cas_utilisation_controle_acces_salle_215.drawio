@@ -1,0 +1,149 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Cas d&#39;utilisation - Contrôle d&#39;accès salle 215" id="uc-acces-215">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1100" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sys" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=center;fontStyle=1;fontSize=14;fillColor=#f5f5f5;strokeColor=#666666;" value="Système de contrôle d&#39;accès – Salle 215" vertex="1">
+          <mxGeometry height="980" width="600" x="100" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="actUser" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utilisateur&lt;br&gt;(porteur de badge)" vertex="1">
+          <mxGeometry height="60" width="30" x="-130" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="actAdmin" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Administrateur" vertex="1">
+          <mxGeometry height="60" width="30" x="-80" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="actEsp" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Lecteur RFID / ESP32&lt;br&gt;(système externe)" vertex="1">
+          <mxGeometry height="60" width="30" x="870" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="uc1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Badger à l&#39;entrée&lt;br&gt;(lecture de l&#39;UID)" vertex="1">
+          <mxGeometry height="60" width="200" x="470" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uc2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Vérifier les autorisations" vertex="1">
+          <mxGeometry height="60" width="200" x="470" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="uc3" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Refuser l&#39;accès" vertex="1">
+          <mxGeometry height="60" width="200" x="470" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="uc4" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Journaliser l&#39;accès" vertex="1">
+          <mxGeometry height="60" width="200" x="470" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="uc5" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Présenter un QR code" vertex="1">
+          <mxGeometry height="60" width="200" x="470" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="uc6" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Valider le QR code" vertex="1">
+          <mxGeometry height="60" width="200" x="470" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="uc7" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="S&#39;authentifier" vertex="1">
+          <mxGeometry height="60" width="200" x="130" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="uc8" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Consulter les disponibilités" vertex="1">
+          <mxGeometry height="60" width="200" x="130" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="uc9" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Créer une réservation" vertex="1">
+          <mxGeometry height="60" width="200" x="130" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="uc10" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Vérifier conflits et droits" vertex="1">
+          <mxGeometry height="60" width="200" x="130" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="uc11" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Générer un QR code" vertex="1">
+          <mxGeometry height="60" width="200" x="130" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="uc12" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Gérer les utilisateurs" vertex="1">
+          <mxGeometry height="60" width="200" x="130" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="uc13" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Gérer les droits d&#39;accès&lt;br&gt;(badges / UID)" vertex="1">
+          <mxGeometry height="60" width="200" x="130" y="870" as="geometry" />
+        </mxCell>
+        <mxCell id="uc14" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Consulter les journaux d&#39;accès" vertex="1">
+          <mxGeometry height="60" width="200" x="470" y="870" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" edge="1" parent="1" source="actUser" style="endArrow=none;html=1;" target="uc1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" edge="1" parent="1" source="actUser" style="endArrow=none;html=1;" target="uc7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" edge="1" parent="1" source="actUser" style="endArrow=none;html=1;" target="uc8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" edge="1" parent="1" source="actUser" style="endArrow=none;html=1;" target="uc9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" edge="1" parent="1" source="actUser" style="endArrow=none;html=1;" target="uc5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b1" edge="1" parent="1" source="actEsp" style="endArrow=none;html=1;" target="uc1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" edge="1" parent="1" source="actEsp" style="endArrow=none;html=1;" target="uc2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" edge="1" parent="1" source="actEsp" style="endArrow=none;html=1;" target="uc3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b4" edge="1" parent="1" source="actEsp" style="endArrow=none;html=1;" target="uc5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" edge="1" parent="1" source="actAdmin" style="endArrow=none;html=1;" target="uc12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" edge="1" parent="1" source="actAdmin" style="endArrow=none;html=1;" target="uc13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" edge="1" parent="1" source="actAdmin" style="endArrow=none;html=1;" target="uc14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" edge="1" parent="1" source="actAdmin" style="endArrow=none;html=1;" target="uc7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="i1" edge="1" parent="1" source="uc1" style="endArrow=open;endFill=0;dashed=1;html=1;fontSize=11;" target="uc2" value="«include»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="i2" edge="1" parent="1" source="uc3" style="endArrow=open;endFill=0;dashed=1;html=1;fontSize=11;" target="uc2" value="«extend»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="i3" edge="1" parent="1" source="uc2" style="endArrow=open;endFill=0;dashed=1;html=1;fontSize=11;" target="uc4" value="«include»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="i4" edge="1" parent="1" source="uc5" style="endArrow=open;endFill=0;dashed=1;html=1;fontSize=11;" target="uc6" value="«include»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="i5" edge="1" parent="1" source="uc6" style="endArrow=open;endFill=0;dashed=1;html=1;fontSize=11;" target="uc2" value="«include»">
+          <mxGeometry relative="1" x="-0.3" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="640" />
+              <mxPoint x="720" y="200" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i6" edge="1" parent="1" source="uc9" style="endArrow=open;endFill=0;dashed=1;html=1;fontSize=11;" target="uc7" value="«include»">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="110" y="460" />
+              <mxPoint x="110" y="250" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i7" edge="1" parent="1" source="uc9" style="endArrow=open;endFill=0;dashed=1;html=1;fontSize=11;" target="uc10" value="«include»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="i8" edge="1" parent="1" source="uc10" style="endArrow=open;endFill=0;dashed=1;html=1;fontSize=11;" target="uc11" value="«include»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="i9" edge="1" parent="1" source="uc14" style="endArrow=open;endFill=0;dashed=1;html=1;fontSize=11;" target="uc4" value="«include»">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="690" y="900" />
+              <mxPoint x="740" y="900" />
+              <mxPoint x="740" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg" parent="1" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=11;" value="&lt;b&gt;Légende&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#6c8ebf&quot;&gt;■&lt;/font&gt; Tâche 1 : contrôle d&#39;accès RFID&lt;br&gt;&lt;font color=&quot;#9673a6&quot;&gt;■&lt;/font&gt; Tâche 2 : QR code, authentification, réservation&lt;br&gt;&lt;font color=&quot;#82b366&quot;&gt;■&lt;/font&gt; Tâche 3 : serveur, SGBD, web, intégration" vertex="1">
+          <mxGeometry height="70" width="320" x="740" y="960" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
